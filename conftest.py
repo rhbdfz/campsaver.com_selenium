@@ -9,9 +9,9 @@ driver = webdriver.Firefox(options=options, service=g)
 
 @pytest.fixture()
 def set_up():
-    print('\nStart test ' + '*' * 150)
+    print('\nStart test ' + '*' * 160)
 
     yield
-    print('\nFinish test ' + '*' * 150)
+    print('\nFinish test ' + '*' * 160)
     print('Exit system')
     driver.quit()
