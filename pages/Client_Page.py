@@ -22,10 +22,6 @@ class Client_page(Base):
     citi = '//input[@id="op_order_checkout_shippingAddress_city"]'
     zip_code = '//input[@id="op_order_checkout_shippingAddress_zip"]'
     phone = '//input[@id="op_order_checkout_shippingAddress_phone"]'
-    # card_number = '//input[@id="credit-card-number"]'
-    # exp_month = '//select[@id="expiration-month"]'
-    # exp_year = '//select[@id="expiration-year"]'
-    # cvv = '//input[@id="cvv"]'
     continue_button = '//input[@class="submit-order-button checkout-submit qa-shipping-method-selected"]'
     error_message = '//span[@class="input-error-message e-form__error e-form__error_no-margin"]'
 
@@ -56,24 +52,6 @@ class Client_page(Base):
 
     def get_phone(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.phone)))
-
-    # def get_card_number(self):
-    #     return self.driver.find_element(By.XPATH, self.card_number)
-    #
-    # def get_exp_month(self):
-    #     return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.exp_month)))
-    #
-    # def get_exp_month_select(self):
-    #     return Select(self.get_exp_month())
-    #
-    # def get_exp_year(self):
-    #     return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.exp_year)))
-    #
-    # def get_exp_year_select(self):
-    #     return Select(self.get_exp_year())
-    #
-    # def get_cvv(self):
-    #     return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.cvv)))
 
     def get_continue_button(self):
         return WebDriverWait(self.driver, 30).until(EC.element_to_be_clickable((By.XPATH, self.continue_button)))
@@ -114,22 +92,6 @@ class Client_page(Base):
         self.get_phone().send_keys(phone)
         print('Input user phone')
 
-    # def input_card_number(self, number):
-    #     self.get_card_number().click()
-    #     print('Input user card number')
-    #
-    # def input_card_month(self, month):
-    #     self.get_exp_month_select().select_by_index(month)
-    #     print('Input user card exp month')
-    #
-    # def input_card_year(self, year):
-    #     self.get_exp_year_select().select_by_index(year)
-    #     print('Input user card exp year')
-    #
-    # def input_card_cvv(self, cvv):
-    #     self.get_cvv().send_keys(cvv)
-    #     print('Input user card cvv')
-
     def continue_to_checkout(self):
         self.get_continue_button().click()
         print('Going to check out')
@@ -151,9 +113,5 @@ class Client_page(Base):
         self.input_zip_code('1001')
         self.input_phone('042226334')
         time.sleep(2)
-        # self.input_card_number('5374921147186089')
-        # self.input_card_month(6)
-        # self.input_card_year(4)
-        # self.input_card_cvv('666')
         self.continue_to_checkout()
         self.check_error('Please review your credit card information.')
